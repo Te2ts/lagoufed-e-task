@@ -13,3 +13,6 @@
   }, 10)
 */
 
+Promise.resolve('hello')
+.then(str => `${str}lagou`)
+.then(str => console.log(`${str}I ♥ U`))

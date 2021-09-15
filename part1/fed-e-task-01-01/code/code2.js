@@ -49,7 +49,7 @@ const cars = [{
 */
 
 // 1.实现 isLastInStock 函数
-
+const isLastInStock = fp.flowRight(fp.prop('in_stock'), fp.last)
 // 2.打印测试
 console.log(isLastInStock(cars))  // 最终返回 true
 
@@ -59,7 +59,7 @@ console.log(isLastInStock(cars))  // 最终返回 true
   把 fp.prop(), fp.first() 组合而成
 */
 // 1.实现 firstName 函数
-
+const firstName = fp.flowRight(fp.prop('name'), fp.first)
 // 2.打印测试
 console.log(firstName(cars))  // 最终返回 Ferrari FF (第一个 car 的 name) 
 
@@ -82,7 +82,7 @@ let _average = function (xs) {
 } // <- 无须改动
 
 // 1.实现 averageDollarValue 函数
-
+const averageDollarValue = fp.flowRight(_average, fp.map(car => car.dollar_value))
 // 2.打印测试
 console.log(averageDollarValue(cars))  // 最终返回 
 
@@ -107,8 +107,8 @@ console.log(averageDollarValue(cars))  // 最终返回
 let _underscore = fp.replace(/\W+/g, '_') // <--无须改动
 
 // 1.实现 sanitizeNames 函数
-
-
+// const sanitizeNames = fp.flowRight(fp.map(car => _underscore(fp.lowerCase(car.name))))
+const sanitizeNames = fp.flowRight(fp.map(name => _underscore(name)), fp.map(car => fp.lowerCase(car.name)))
 // 2.打印测试
 console.log(sanitizeNames(cars))
 
